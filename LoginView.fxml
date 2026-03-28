@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.univ.ui.LoginController"
+            style="-fx-background-color: linear-gradient(to bottom, #2c3e50, #3498db);">
+    
+    <center>
+        <VBox fx:id="loginBox" spacing="20" alignment="CENTER" 
+              maxWidth="400" maxHeight="600"
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 20, 0, 0, 10);">
+            <padding>
+                <Insets top="40" right="40" bottom="40" left="40"/>
+            </padding>
+            
+            <!-- Logo université (image en ligne) -->
+            <ImageView fitHeight="100" fitWidth="100">
+                <Image url="https://img.icons8.com/fluency/96/000000/university.png"/>
+            </ImageView>
+            
+            <Label text="UNIVERSITY" 
+                   style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-text-alignment: center;" wrapText="true"/>
+            
+            <Label text="Gestion Intelligente des Salles et des Emplois du Temps" 
+                   style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+            
+            <TextField fx:id="emailField" promptText="Email" 
+                      style="-fx-background-radius: 5; -fx-font-size: 14px;"/>
+            
+            <PasswordField fx:id="passwordField" promptText="Mot de passe" 
+                          style="-fx-background-radius: 5; -fx-font-size: 14px;"/>
+            
+            <ComboBox fx:id="roleComboBox" promptText="Rôle" 
+                     style="-fx-background-radius: 5; -fx-font-size: 14px;"/>
+            
+            <Button fx:id="loginButton" text="Se connecter" onAction="#handleLogin" 
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 5;"
+                    maxWidth="200"/>
+            
+            <Label fx:id="statusLabel" style="-fx-font-size: 12px;"/>
+        </VBox>
+    </center>
+</BorderPane>
