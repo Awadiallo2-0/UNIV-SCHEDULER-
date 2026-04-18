@@ -1,12 +1,14 @@
 package com.univ.ui;
 
 import javafx.animation.FadeTransition;
+import java.net.URL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,7 +29,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
-
+import java.net.URL;
 public class MainController {
 
     @FXML private BorderPane rootPane;
@@ -48,6 +50,7 @@ public class MainController {
     @FXML private Button rechercheBtn;
     @FXML private Button rapportBtn;
     @FXML private Button logoutBtn;
+    @FXML private Button themeToggleBtn;
 
     private Main mainApp;
     private Utilisateur utilisateur;
@@ -66,6 +69,10 @@ public class MainController {
     private NotificationService notificationService = new NotificationService();
     private StatistiqueService statistiqueService = new StatistiqueService();
 
+    private boolean isDarkTheme = false;
+    private static final String LIGHT_THEME = "/css/style.css";
+    private static final String DARK_THEME = "/css/dark.css";
+
     @FXML
     public void initialize() {
         setupMenuAnimations();
@@ -80,20 +87,85 @@ public class MainController {
             Image logo = new Image("https://img.icons8.com/fluency/96/000000/university.png");
             logoImageView.setImage(logo);
         }
+
+        Object themeToggleBtn = null;
+		// Configuration du bouton de thème
+        if (themeToggleBtn != null) {
+            ((ButtonBase) themeToggleBtn).setOnAction(e -> toggleTheme());
+            ((Labeled) themeToggleBtn).setText("🌙"); // lune pour thème sombre, soleil pour clair
+        }
+        
+        // Appliquer le thème par défaut (clair)
+        applyTheme(false);
     }
 
+    /**
+     * Animation des boutons du menu : effet de surbrillance sans disparition.
+     * Les boutons restent toujours visibles avec un fond sombre permanent.
+     */
     private void setupMenuAnimations() {
+        // Style de base pour tous les boutons du menu
+        String baseStyle = "-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-font-size: 14px; " +
+                           "-fx-alignment: CENTER-LEFT; -fx-padding: 10; -fx-background-radius: 5;";
+        
         Button[] menuButtons = {dashboardBtn, batimentBtn, salleBtn, equipementBtn, 
                                 coursBtn, emploiBtn, rechercheBtn, rapportBtn, logoutBtn};
         
         for (Button btn : menuButtons) {
+            btn.setStyle(baseStyle);
+            // Effet au survol : changement de couleur de fond (plus clair) mais reste visible
             btn.setOnMouseEntered(e -> {
-                btn.setStyle("-fx-background-color: #34495e; -fx-text-fill: white; -fx-cursor: hand;");
+                btn.setStyle("-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-size: 14px; " +
+                             "-fx-alignment: CENTER-LEFT; -fx-padding: 10; -fx-background-radius: 5; -fx-cursor: hand;");
             });
             btn.setOnMouseExited(e -> {
-                btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #2c3e50;");
+                btn.setStyle(baseStyle);
             });
         }
+    }
+
+    /**
+     * Change le thème (clair/sombre) en remplaçant la feuille de style principale.
+     */
+    @FXML
+    public void toggleTheme() {
+        isDarkTheme = !isDarkTheme;
+        applyTheme(isDarkTheme);
+        if (themeToggleBtn != null) {
+            themeToggleBtn.setText(isDarkTheme ? "☀️" : "🌙");
+        }
+    }
+
+    private void applyTheme(boolean dark) {
+        Scene scene = rootPane.getScene();
+        if (scene == null) return;
+        scene.getStylesheets().clear();
+        String themePath = dark ? "/css/dark.css" : "/css/style.css";
+        URL themeUrl = getClass().getResource(themePath);
+        if (themeUrl != null) {
+            scene.getStylesheets().add(themeUrl.toExternalForm());
+        }
+        // Couleurs de fond principales
+        String bgColor = dark ? "#121212" : "#ecf0f1";
+        rootPane.setStyle("-fx-background-color: " + bgColor + ";");
+        if (contentArea != null) {
+            contentArea.setStyle("-fx-background-color: " + bgColor + "; -fx-padding: 20;");
+        }
+        updateMenuColors(dark);
+    }
+
+    private void updateMenuColors(boolean dark) {
+        String bgColor = dark ? "#1e2a36" : "#2c3e50";
+        String textColor = "white";
+        String baseStyle = String.format("-fx-background-color: %s; -fx-text-fill: %s; -fx-font-size: 14px; " +
+                                         "-fx-alignment: CENTER-LEFT; -fx-padding: 10; -fx-background-radius: 5;", bgColor, textColor);
+        Button[] menuButtons = {dashboardBtn, batimentBtn, salleBtn, equipementBtn, 
+                                coursBtn, emploiBtn, rechercheBtn, rapportBtn, logoutBtn};
+        for (Button btn : menuButtons) {
+            btn.setStyle(baseStyle);
+        }
+        // Changer la couleur du panneau latéral
+        menuVBox.setStyle("-fx-background-color: " + bgColor + "; -fx-padding: 20;");
     }
 
     public void initView() {
@@ -118,6 +190,14 @@ public class MainController {
         
         dashboard.getChildren().addAll(statsBox, chartsBox, recentReservations);
         setContent(dashboard);
+    }
+    @FXML
+    private void handleAbout() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("À propos");
+        alert.setHeaderText(null);
+        alert.setContentText("UNIV-SCHEDULER v1.0\n\nApplication de gestion des salles et emplois du temps.\nDéveloppé avec JavaFX et MySQL.");
+        alert.showAndWait();
     }
 
     @FXML
@@ -169,6 +249,10 @@ public class MainController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void handleExit() {
+        System.exit(0);
     }
 
     // ==================== MÉTHODES DE CRÉATION DE VUES ====================
@@ -1208,7 +1292,6 @@ public class MainController {
     }
 
     // ==================== RAPPORTS ET STATISTIQUES ====================
-
     private VBox createRapportsView() {
         VBox view = new VBox(20);
         view.setPadding(new Insets(20));
@@ -1232,9 +1315,17 @@ public class MainController {
             rafraichirBtn
         );
 
+        // Conteneur pour les graphiques (sera mis à jour)
         VBox chartsContainer = new VBox(20);
         chartsContainer.setPadding(new Insets(10));
 
+        // Mettre le contenu des graphiques dans un ScrollPane pour éviter les coupures
+        ScrollPane scrollPane = new ScrollPane(chartsContainer);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+        scrollPane.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+
+        // Fonction de mise à jour
         Runnable updateCharts = () -> {
             LocalDate debut = debutPicker.getValue();
             LocalDate fin = finPicker.getValue();
@@ -1256,8 +1347,10 @@ public class MainController {
             yAxis.setLabel("Nombre de réservations");
             LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
             lineChart.setTitle("Évolution quotidienne des réservations");
-            lineChart.setPrefHeight(300);
+            lineChart.setPrefHeight(300); // Hauteur fixe raisonnable
             lineChart.setAnimated(false);
+            lineChart.setMinHeight(250);
+            lineChart.setMaxHeight(400);
 
             XYChart.Series<String, Number> series = new XYChart.Series<>();
             series.setName("Réservations");
@@ -1284,6 +1377,8 @@ public class MainController {
             barChart.setTitle("Occupation par salle");
             barChart.setPrefHeight(250);
             barChart.setAnimated(false);
+            barChart.setMinHeight(200);
+            barChart.setMaxHeight(350);
 
             XYChart.Series<String, Number> series2 = new XYChart.Series<>();
             series2.setName("Réservations");
@@ -1330,8 +1425,9 @@ public class MainController {
 
         TabPane reportTabs = new TabPane();
         Tab occupationTab = new Tab("Taux d'occupation");
-        occupationTab.setContent(chartsContainer);
+        occupationTab.setContent(scrollPane);  // IMPORTANT : mettre le ScrollPane, pas le VBox directement
         
+        // ... reste des onglets Export inchangé ...
         Tab exportTab = new Tab("Export");
         VBox exportBox = new VBox(10);
         exportBox.setPadding(new Insets(10));
@@ -1386,8 +1482,7 @@ public class MainController {
         view.getChildren().addAll(title, periodeBox, reportTabs);
         return view;
     }
-
-    // ==================== MÉTHODES UTILITAIRES ====================
+       // ==================== MÉTHODES UTILITAIRES ====================
 
     private void setContent(Parent content) {
         contentArea.getChildren().clear();
@@ -1437,6 +1532,9 @@ public class MainController {
         card.setAlignment(Pos.CENTER);
         card.setPadding(new Insets(15));
         card.setPrefWidth(150);
+        card.getStyleClass().add("stat-card");   // ← AJOUTER CETTE LIGNE
+        card.setAlignment(Pos.CENTER);
+
         card.setStyle(String.format(
             "-fx-background-color: %s; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);",
             color));
