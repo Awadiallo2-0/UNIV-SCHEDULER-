@@ -1,0 +1,211 @@
+/* ========== THÈME SOMBRE GLOBAL ========== */
+.root {
+    -fx-font-family: 'Segoe UI', 'Arial', sans-serif;
+    -fx-background-color: #121212;
+}
+
+/* Forcer tous les conteneurs principaux */
+BorderPane, StackPane, VBox, HBox, GridPane, ScrollPane, TabPane, SplitPane, AnchorPane, TilePane, FlowPane {
+    -fx-background-color: #121212;
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: #e0e0e0;
+}
+
+/* ========== CARTES STATISTIQUES ========== */
+.stat-card {
+    -fx-background-color: #2a2a2a;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 5);
+}
+.stat-card .label {
+    -fx-text-fill: #ffffff;
+}
+
+/* ========== TABLEAUX (Gestion des bâtiments, salles, cours, etc.) ========== */
+.table-view {
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: #2c2c2c;
+}
+.table-view .column-header-background {
+    -fx-background-color: #2c2c2c;
+}
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #2c2c2c;
+}
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.table-row-cell {
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: #2c2c2c;
+}
+.table-row-cell:odd {
+    -fx-background-color: #262626;
+}
+.table-row-cell:hover {
+    -fx-background-color: #3a3a3a;
+}
+.table-row-cell:selected {
+    -fx-background-color: #1e6f9f;
+}
+.table-cell {
+    -fx-text-fill: #e0e0e0;
+    -fx-padding: 8;
+}
+
+/* ========== LISTES (Dernières réservations, résultats recherche) ========== */
+.list-view {
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: #2c2c2c;
+}
+.list-cell {
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: #e0e0e0;
+    -fx-border-color: #2c2c2c;
+}
+.list-cell:odd {
+    -fx-background-color: #262626;
+}
+.list-cell:hover {
+    -fx-background-color: #3a3a3a;
+}
+.list-cell:selected {
+    -fx-background-color: #1e6f9f;
+}
+
+/* ========== EMPLOI DU TEMPS ========== */
+.grid-pane {
+    -fx-background-color: #1e1e1e;
+}
+.emploi-cell {
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: #2c2c2c;
+}
+.emploi-cell:hover {
+    -fx-background-color: #2c2c2c;
+}
+.emploi-cell .label {
+    -fx-text-fill: white;
+}
+.emploi-cell.cours {
+    -fx-background-color: #1e6f9f;
+}
+.emploi-cell.reunion {
+    -fx-background-color: #d35400;
+}
+.emploi-cell.soutenance {
+    -fx-background-color: #8e44ad;
+}
+.emploi-cell.etude {
+    -fx-background-color: #27ae60;
+}
+
+/* ========== GRAPHIQUES ========== */
+.chart {
+    -fx-background-color: #1e1e1e;
+}
+.chart-title {
+    -fx-text-fill: white;
+}
+.axis-label {
+    -fx-text-fill: #e0e0e0;
+}
+.axis-tick-label {
+    -fx-text-fill: #e0e0e0;
+}
+.chart-legend {
+    -fx-background-color: #1e1e1e;
+}
+.chart-legend-item {
+    -fx-text-fill: #e0e0e0;
+}
+.chart-pie-label {
+    -fx-fill: white;
+}
+.default-color0.chart-pie { -fx-pie-color: #3498db; }
+.default-color1.chart-pie { -fx-pie-color: #e74c3c; }
+.default-color2.chart-pie { -fx-pie-color: #f39c12; }
+.chart-series-line {
+    -fx-stroke: #1e6f9f;
+}
+.chart-line-symbol {
+    -fx-background-color: #1e6f9f;
+}
+.default-color0.chart-bar { -fx-bar-fill: #3498db; }
+
+/* ========== BOUTONS ========== */
+.button {
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: #e0e0e0;
+    -fx-background-radius: 4;
+}
+.button:hover {
+    -fx-background-color: #3a3a3a;
+}
+.button-primary, .button-success, .button-danger {
+    -fx-text-fill: white;
+}
+
+/* ========== CHAMPS DE SAISIE ========== */
+.text-field, .combo-box, .date-picker, .password-field {
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: #e0e0e0;
+    -fx-border-color: #3a3a3a;
+}
+.text-field:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #1e6f9f;
+}
+
+/* ========== ONGLETS ========== */
+.tab-pane .tab-header-area {
+    -fx-background-color: #1e1e1e;
+}
+.tab {
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: #e0e0e0;
+}
+.tab:selected {
+    -fx-background-color: #1e6f9f;
+}
+.tab .tab-label {
+    -fx-text-fill: white;
+}
+
+/* ========== SCROLLPANE ========== */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.scroll-pane .viewport {
+    -fx-background-color: #121212;
+}
+
+/* ========== DIALOGUES ========== */
+.dialog-pane {
+    -fx-background-color: #1e1e1e;
+}
+.dialog-pane .label {
+    -fx-text-fill: #e0e0e0;
+}
+.dialog-pane .button {
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: white;
+}
+.dialog-pane .button:hover {
+    -fx-background-color: #1e6f9f;
+}
+
+/* ========== MENU LATÉRAL ========== */
+.side-menu {
+    -fx-background-color: #1e1e1e;
+}
+.side-menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e0e0e0;
+}
+.side-menu-button:hover {
+    -fx-background-color: #2c2c2c;
+}
