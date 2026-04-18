@@ -64,13 +64,13 @@ Le projet répond aux problématiques suivantes :
 |-------------|-----------------------|
 | **Java** | 17 |
 | **JavaFX** | 17.0.18 (SDK) |
-| **Base de données** | MySQL 8.0.33 (ou SQLite) |
+| **Base de données** | MySQL 8.0.33  |
 | **Build** | Maven 3.11+ |
 | **Persistance** | JDBC (DAO pattern) |
 | **Graphiques** | JavaFX Charts (LineChart, BarChart, PieChart) |
 | **Export PDF** | iText 7 Core |
 | **Export CSV** | API Java standard |
-| **IDE** | Eclipse (ou IntelliJ, VS Code) |
+| **IDE** | Eclipse  |
 
 ---
 
@@ -78,11 +78,11 @@ Le projet répond aux problématiques suivantes :
 
 ### Prérequis
 - Java Development Kit (JDK) 17
-- MySQL Server (ou SQLite)
+- MySQL Server 
 - Maven (inclus dans l’IDE ou à installer)
 - Git (facultatif pour cloner)
 
 ### Étape 1 : Cloner le projet
 ```bash
-git clone https://github.com/ton-compte/univ-scheduler.git
-cd univ-scheduler
+git clone https://github.com/ton-compte/univ-scheduler-.git
+cd univ-scheduler-
