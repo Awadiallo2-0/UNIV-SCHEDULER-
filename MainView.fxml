@@ -10,63 +10,76 @@
             fx:controller="com.univ.ui.MainController"
             style="-fx-background-color: #ecf0f1;">
     
+    <!-- Menu latéral gauche (réduit en hauteur) -->
     <left>
-        <VBox fx:id="menuVBox" spacing="10" prefWidth="250" 
-              style="-fx-background-color: #2c3e50; -fx-padding: 20;">
+        <VBox fx:id="menuVBox" spacing="5" prefWidth="220" 
+              style="-fx-background-color: #2c3e50; -fx-padding: 10 5;">
             
-            <ImageView fx:id="logoImageView" fitHeight="80" fitWidth="80" preserveRatio="true">
+            <ImageView fx:id="logoImageView" fitHeight="60" fitWidth="60" preserveRatio="true">
                 <Image url="https://img.icons8.com/fluency/96/000000/university.png"/>
             </ImageView>
             
             <Label text="UNIVERSITY" 
-                   style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-alignment: center;" wrapText="true"/>
+                   style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; -fx-text-alignment: center;" wrapText="true"/>
             
             <Label text="Gestion Intelligente des Salles et des Emplois du Temps" 
-                   style="-fx-text-fill: #bdc3c7; -fx-font-size: 12px; -fx-text-alignment: center;" wrapText="true"/>
+                   style="-fx-text-fill: #bdc3c7; -fx-font-size: 10px; -fx-text-alignment: center;" wrapText="true"/>
             
             <Separator style="-fx-background-color: #34495e;"/>
             
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <ImageView fitHeight="30" fitWidth="30">
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <ImageView fitHeight="20" fitWidth="20">
                     <Image url="https://img.icons8.com/fluency/48/000000/user.png"/>
                 </ImageView>
                 <VBox>
-                    <Label fx:id="userLabel" style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;"/>
-                    <Label fx:id="roleLabel" style="-fx-text-fill: #bdc3c7; -fx-font-size: 12px;"/>
+                    <Label fx:id="userLabel" style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+                    <Label fx:id="roleLabel" style="-fx-text-fill: #bdc3c7; -fx-font-size: 10px;"/>
                 </VBox>
             </HBox>
             
             <Separator style="-fx-background-color: #34495e;"/>
             
             <Button fx:id="dashboardBtn" text="Tableau de bord" onAction="#showDashboard" 
-                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER-LEFT; -fx-padding: 10;"/>
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 11px; -fx-alignment: CENTER-LEFT; -fx-padding: 6;"/>
             <Button fx:id="batimentBtn" text="Bâtiments" onAction="#showBatiments" 
-                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER-LEFT; -fx-padding: 10;"/>
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 11px; -fx-alignment: CENTER-LEFT; -fx-padding: 6;"/>
             <Button fx:id="salleBtn" text="Salles" onAction="#showSalles" 
-                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER-LEFT; -fx-padding: 10;"/>
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 11px; -fx-alignment: CENTER-LEFT; -fx-padding: 6;"/>
             <Button fx:id="equipementBtn" text="Équipements" onAction="#showEquipements" 
-                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER-LEFT; -fx-padding: 10;"/>
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 11px; -fx-alignment: CENTER-LEFT; -fx-padding: 6;"/>
             <Button fx:id="coursBtn" text="Cours" onAction="#showCours" 
-                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER-LEFT; -fx-padding: 10;"/>
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 11px; -fx-alignment: CENTER-LEFT; -fx-padding: 6;"/>
             <Button fx:id="emploiBtn" text="Emploi du temps" onAction="#showEmploiDuTemps" 
-                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER-LEFT; -fx-padding: 10;"/>
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 11px; -fx-alignment: CENTER-LEFT; -fx-padding: 6;"/>
             <Button fx:id="rechercheBtn" text="Recherche salles" onAction="#showRecherche" 
-                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER-LEFT; -fx-padding: 10;"/>
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 11px; -fx-alignment: CENTER-LEFT; -fx-padding: 6;"/>
             <Button fx:id="rapportBtn" text="Rapports" onAction="#showRapports" 
-                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER-LEFT; -fx-padding: 10;"/>
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 11px; -fx-alignment: CENTER-LEFT; -fx-padding: 6;"/>
             
             <Separator style="-fx-background-color: #34495e;"/>
             
             <Button fx:id="logoutBtn" text="Déconnexion" onAction="#handleLogout" 
-                    style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER-LEFT; -fx-padding: 10; -fx-background-radius: 5;"/>
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 11px; -fx-alignment: CENTER-LEFT; -fx-padding: 6; -fx-background-radius: 5;"/>
             
-            <Label fx:id="dateLabel" style="-fx-text-fill: #bdc3c7; -fx-font-size: 12px; -fx-alignment: CENTER;"/>
+            <Label fx:id="dateLabel" style="-fx-text-fill: #bdc3c7; -fx-font-size: 10px; -fx-alignment: CENTER;"/>
         </VBox>
     </left>
     
+    <!-- Barre d'outils en haut avec le bouton de thème -->
+    <top>
+        <ToolBar>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button fx:id="themeToggleBtn" text="🌙" onAction="#toggleTheme" 
+                    style="-fx-background-color: transparent; -fx-font-size: 14px; -fx-cursor: hand;" />
+        </ToolBar>
+    </top>
+    
+    <!-- Zone centrale avec défilement -->
     <center>
-        <StackPane fx:id="contentArea" style="-fx-background-color: #ecf0f1; -fx-padding: 20;">
-            <!-- Le contenu sera chargé dynamiquement -->
-        </StackPane>
+        <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+            <StackPane fx:id="contentArea" style="-fx-background-color: #ecf0f1; -fx-padding: 20;">
+                <!-- Le contenu sera chargé dynamiquement -->
+            </StackPane>
+        </ScrollPane>
     </center>
 </BorderPane>
